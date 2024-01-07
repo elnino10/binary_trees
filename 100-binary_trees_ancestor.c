@@ -14,9 +14,15 @@ binary_tree_t *binary_trees_ancestor(
 	if (!first || !second)
 		return (NULL);
 
-    /*nodes are the same. Hence, they are their own ancestor*/
+	/*nodes are the same. Hence, they are their own ancestor*/
 	if (first == second)
 		return ((binary_tree_t *)first);
+
+	if (first->parent == second)
+		return (first->parent);
+
+	if (first == second->parent)
+		return (second->parent);
 
 	if (binary_trees_ancestor(first->parent, second))
 		return (first->parent);
